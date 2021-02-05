@@ -16,7 +16,9 @@ namespace Business.Concrete
         }
         public List<Car> GetAll()
         {
-            return _carDal.GelAll();
+            return _carDal.GetAll();
         }
     }
+
+    // TODO: Add different methods that uses different filters : GetCarsByBrandId , GetCarsByColorId
 }

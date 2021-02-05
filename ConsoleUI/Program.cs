@@ -11,6 +11,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             CarManager carManager = new CarManager(new inMemoryCarDal());
+            // TODO: change DAL as a entity framework
 
             foreach (Car car in carManager.GetAll())
             {
