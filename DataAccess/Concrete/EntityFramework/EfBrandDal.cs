@@ -61,4 +61,3 @@ namespace DataAccess.Concrete.EntityFramework
     }
 }
 
-// TODO: Add EfColorDal implementation in EntityFramework.
