@@ -7,7 +7,7 @@ using System;
 
 namespace ConsoleUI
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -18,6 +18,9 @@ namespace ConsoleUI
                 Console.WriteLine(car.Description);
             }
 
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+
+            brandManager.AddBrand(new Brand {BrandId = 11, BrandName = "KutiMARKASI" });
 
         }
     }
