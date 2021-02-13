@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using DataAccess.Abstract;
 using Entities.DTOs;
+using Core.Utilities.Results;
+using Business.Constants;
 
 namespace Business.Concrete
 {
@@ -16,51 +18,50 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void AddCar(Car car)
+        public IResult AddCar(Car car)
         {
             if(car.DailyPrice > 0)
             {
                 _carDal.Add(car);
-                Console.WriteLine("The car has been added to DB.");
+                return new SuccessResult(Messages.CarAdded);
             }
             else
             {
-                Console.WriteLine("Daily price must be higher than 0");
+                return new ErrorResult(Messages.InvalidDailyPrice);
             }
         }
 
-        public void DeleteCar(Car car)
+        public IResult DeleteCar(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("The car has been deleted from DB.");
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public void UpdateCar(Car car)
+        public IResult UpdateCar(Car car)
         {
             _carDal.Update(car);
-            Console.WriteLine("The car with ID " + car.CarId + "has been updated.");
+            return new SuccessResult(Messages.CarUpdated);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetAll(p => p.BrandId == brandId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == brandId),Messages.CarsListedByBrand);
         }
         
-        public List<Car> GetCarsByColorId(int colorId)
+        public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return _carDal.GetAll(p => p.ColorId == colorId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == colorId),Messages.CarsListedByColor);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),Messages.CarsDetailsListed);
         }
     }
 
-    // TODO: Add different methods that uses different filters : GetCarsByBrandId , GetCarsByColorId
 }
