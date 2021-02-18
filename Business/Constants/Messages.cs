@@ -28,7 +28,20 @@ namespace Business.Constants
         internal static string ColorUpdated = "The color has been updated";
         internal static string ColorListed = "Colors were listed.";
 
+        internal static string RentalAdded = "The Rental has been added.";
+        internal static string RentalDeleted = "The Rental has been deleted";
+        internal static string RentalUpdated = "The Rental has been updated";
+        internal static string RentalListed = "Rentals were listed.";
 
 
+        internal static string CustomerAdded = "The Customer has been added.";
+        internal static string CustomerDeleted = "The Customer has been deleted";
+        internal static string CustomerUpdated = "The Customer has been updated";
+        internal static string CustomerListed = "Customers were listed.";
+
+        internal static string UserAdded = "The User has been added.";
+        internal static string UserDeleted = "The User has been deleted";
+        internal static string UserUpdated = "The User has been updated";
+        internal static string UserListed = "Users were listed.";
     }
 }
