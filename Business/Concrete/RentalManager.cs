@@ -3,8 +3,10 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -23,6 +25,16 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalAdded);
         }
 
+        public IResult CheckReturnDate(int carId)
+        {
+            var result = _rentalDal.GetRentalDetails(x => x.CarId == carId);
+            if(result.Count > 0 && result.Count(x => x.ReturnDate == null) > 0)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
+        }
+
         public IResult DeleteRental(Rental rental)
         {
             _rentalDal.Delete(rental);
@@ -34,10 +46,28 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalListed);
         }
 
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto(int carId)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(x => x.CarId == carId));
+        }
+
         public IResult UpdateRental(Rental rental)
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
+        }
+
+        public IResult UpdateReturnDate(int Id)
+        {
+            var result = _rentalDal.GetAll(x => x.CarId == Id);
+            var updatedRental = result.LastOrDefault();
+            if(updatedRental.ReturnDate != null)
+            {
+                return new ErrorResult();
+            }
+            updatedRental.ReturnDate = DateTime.Now;
+            _rentalDal.Update(updatedRental);
+            return new SuccessResult();
         }
     }
 }
