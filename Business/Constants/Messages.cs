@@ -32,6 +32,13 @@ namespace Business.Constants
         internal static string RentalDeleted = "The Rental has been deleted";
         internal static string RentalUpdated = "The Rental has been updated";
         internal static string RentalListed = "Rentals were listed.";
+        internal static string CarNotAvailable = "You can't rent this car, you have to wait.";
+        internal static string CarIsAvailable = "Car is available, you can rent.";
+        internal static string CarIsAlreadyReturned = "The Car is already returned.";
+        internal static string ReturnDateUpdated = "The Car was just returned. It is available for rent now.";
+
+
+
 
 
         internal static string CustomerAdded = "The Customer has been added.";

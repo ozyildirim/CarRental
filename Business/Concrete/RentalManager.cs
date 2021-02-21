@@ -21,18 +21,23 @@ namespace Business.Concrete
 
         public IResult AddRental(Rental rental)
         {
+            var result = CheckReturnDate(rental.CarId);
+            if(!result.Success)
+            {
+                return new ErrorResult(result.Message);
+            }
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult CheckReturnDate(int carId)
         {
-            var result = _rentalDal.GetRentalDetails(x => x.CarId == carId);
-            if(result.Count > 0 && result.Count(x => x.ReturnDate == null) > 0)
+            var result = _rentalDal.GetRentalDetails(x => x.CarId == carId && x.ReturnDate == null);
+            if(result.Count > 0)
             {
-                return new ErrorResult();
+                return new ErrorResult(Messages.CarNotAvailable);
             }
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarIsAvailable);
         }
 
         public IResult DeleteRental(Rental rental)
@@ -63,11 +68,11 @@ namespace Business.Concrete
             var updatedRental = result.LastOrDefault();
             if(updatedRental.ReturnDate != null)
             {
-                return new ErrorResult();
+                return new ErrorResult(Messages.CarIsAlreadyReturned);
             }
             updatedRental.ReturnDate = DateTime.Now;
             _rentalDal.Update(updatedRental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ReturnDateUpdated);
         }
     }
 }
