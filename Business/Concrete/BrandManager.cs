@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -16,6 +18,9 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
+
+        // we can set validator for that function.
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult AddBrand(Brand brand)
         {
             if(brand.BrandName.Length > 0)

@@ -6,6 +6,8 @@ using DataAccess.Abstract;
 using Entities.DTOs;
 using Core.Utilities.Results;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 
 namespace Business.Concrete
 {
@@ -18,6 +20,8 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        // we can set validator for that function.
+        [ValidationAspect(typeof(CarValidator))]
         public IResult AddCar(Car car)
         {
             if(car.DailyPrice > 0)
