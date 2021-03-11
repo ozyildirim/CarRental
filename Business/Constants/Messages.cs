@@ -10,7 +10,7 @@ namespace Business.Constants
 
         public static string BrandAdded = "Brand has been added.";
         public static string BrandDeleted = "Brand has been deleted.";
-        public static string BrandUpdated= "Brand has been updated.";
+        public static string BrandUpdated = "Brand has been updated.";
         public static string InvalidBrandName = "Invalid brand name.";
         internal static string BrandListed = "Brands were listed.";
 
@@ -22,7 +22,7 @@ namespace Business.Constants
         internal static string CarsListedByColor = "Cars has been listed by colors.";
         internal static string CarsListedByBrand = "Cars has been listed by brands.";
         internal static string CarsDetailsListed = "Cars has been listed with details.";
-        
+
         internal static string ColorAdded = "The color has been added.";
         internal static string ColorDeleted = "The color has been deleted";
         internal static string ColorUpdated = "The color has been updated";
@@ -39,8 +39,6 @@ namespace Business.Constants
 
 
 
-
-
         internal static string CustomerAdded = "The Customer has been added.";
         internal static string CustomerDeleted = "The Customer has been deleted";
         internal static string CustomerUpdated = "The Customer has been updated";
@@ -50,5 +48,11 @@ namespace Business.Constants
         internal static string UserDeleted = "The User has been deleted";
         internal static string UserUpdated = "The User has been updated";
         internal static string UserListed = "Users were listed.";
+
+        internal static string ExistingCarName = "The car name does exists, please try another one.";
+        internal static string CarImageAdded = "The car image was successfully uploaded.";
+        internal static string CarImageDeleted = "The car image was deleted.";
+        internal static string CarImageUpdated = "The car image was uploaded";
+        internal static string CarImageLimitExceeded = "The number of car image is reached to limit.";
     }
 }
