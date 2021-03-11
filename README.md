@@ -2,8 +2,5 @@
 #           Car Rental Project
 ### 📌Getting Started
 ---
-This is C# project that has basic operations and details to represent car rental system. N-Tier Architecture is used in that system.
 
-N-Tier Architecture provides us to make project scalable and flexible for all components/services. 
-It makes everything easy to integrate on system.
 
